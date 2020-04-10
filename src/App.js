@@ -35,11 +35,9 @@ class App extends Component {
 	};
 
 	toggleStatusHandler = (event) => {
-		// console.log('matched');
 		this.setState({
 			todos: this.state.todos.map((item) => {
 				if (event.key === item.key) {
-					console.log('matched');
 					return {
 						...item,
 						status: !item.status,
