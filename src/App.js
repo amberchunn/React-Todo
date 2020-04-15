@@ -34,22 +34,27 @@ class App extends Component {
 		form.reset();
 	};
 
-	toggleStatusHandler = (event) => {
+	toggleStatusHandler = (id) => {
 		this.setState({
 			todos: this.state.todos.map((item) => {
-				if (event.key === item.key) {
+				if (id === item.id) {
 					return {
 						...item,
 						status: !item.status,
 					};
-				}
-				return item;
+				} else return item;
 			}),
 		});
 	};
 
 	clearTaskHandler = (event) => {
-		this.setState({ task: event.target.value });
+		event.preventDefault();
+
+		this.setState({
+			todos: this.state.todos.filter((item) => {
+				return item.status === !true;
+			}),
+		});
 	};
 
 	render() {
@@ -71,7 +76,3 @@ class App extends Component {
 }
 
 export default App;
-
-// you will need a place to store your state in this component.
-// design `App` to be the parent component of your application.
-// this component is going to take care of state, and any change handlers you need to work with your state
